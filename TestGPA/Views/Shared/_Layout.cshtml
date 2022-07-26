@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Thebes Academy - @ViewData["Title"]</title>
+         <meta charset="UTF-8">
+         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+         <meta name="description" content="">
+         <meta name="keywords" content="">
+         <meta name="team" content="">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+         <link rel="stylesheet" href="~/css/bootstrap.min.css">
+         <link rel="stylesheet" href="~/css/vegas.min.css">
+         <link rel="stylesheet" href="~/css/font-awesome.min.css">
+         <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
+
+         <!-- MAIN CSS -->
+         <link rel="stylesheet" href="~/css/templatemo-style.css">
+    </head>
+    <body>
+         <!-- HOME -->
+         <section id="home">
+            <div class="overlay"></div>
+              <div class="container">
+                   <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                             <div class="home-info">
+                                  <h1 style="font-size: 40px;">اكاديميه طيبه <br><span style="font-size: 30px;">قم باختبار تقديرك وتحسينه الان</span></h1>
+                                  <div class="subscribe-form">
+                                    <form action="" method="get">
+                                       <select class="form-control dropdown" id="dropDepartments" style="font-size: 20px;">
+                                            <option style="font-size: 20px;" value="">قم باختيار تخصصك</option>
+                                       </select>
+                                       <br />
+                                       <a href="#h" class="btn btn-success p-3" style="font-size: 20px;">هيا بنا</a>
+                                  </form>
+                                  </div>
+                             </div>
+                        </div>
+                   </div>
+              </div>
+        </section>
+
+        <div class="container" hidden id="rebody">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <!-- SCRIPTS -->
+        <script src="~/js/jquery.js"></script>
+        <script src="~/js/vegas.min.js"></script>
+        <script src="~/js/custom.js"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
+</html>

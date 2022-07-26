@@ -1,0 +1,368 @@
+﻿@using TestGPA.Consts
+@{
+    ViewData["Title"] = "Test GBA";
+}
+
+<div class="container col-12">
+    <div class="col-6" style="margin-right:auto;margin-left:auto">
+        <section class="col-6 mt-2">
+            <div id="h">
+                <div class="col-6" style="max-width:max-content;margin-right:auto;margin-left:auto">
+                    <ul style="list-style-type:none;font-size:20px;font:bold">
+                        <li style="display:inline-block; padding:5px"><button class="menu-items levbtn" data-level="@LevelsNames.Level_4" data-id="level-4">المستوي الرابع</button></li>
+                        <li style="display:inline-block; padding:5px"><button class="menu-items levbtn" data-level="@LevelsNames.Level_3" data-id="level-3">المستوي الثالث</button></li>
+                        <li style="display:inline-block; padding:5px"><button class="menu-items levbtn" data-level="@LevelsNames.Level_2" data-id="level-2"">المستوي الثاني</button></li>
+                        <li style="display:inline-block; padding:5px"><button class="menu-items active levbtn" data-level="@LevelsNames.Level_1" data-id="level-1">المستوي الاول</button></li>
+                    </ul>
+                </div>
+                <div class="col-6" style="max-width:max-content;margin-right:auto;margin-left:auto">
+                    <ul style="list-style-type:none;font-size:20px;font:bold" class="text-center">
+                        <li style="display:inline-block; padding:5px"><button class="menu-items termbtn" data-term="#term2" id="t2">التيرم الثاني</button></li>
+                        <li style="display:inline-block; padding:5px"><button class="menu-items termbtn active" data-term="#term1" id="t1">التيرم الاول</button></li>
+                    </ul>
+                </div>
+            </div>
+
+            <br />
+            <table class="table table" id="level-1-1" data-state="false">
+                <thead>
+                    <tr>
+                        <th>كود الماده</th>
+                        <th>اسم الماده</th>
+                        <th>الساعات المعتمده</th>
+                        <th>اختر تقديرك</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <table class="table table" id="level-1-2" data-state="false" hidden>
+                <thead>
+                    <tr>
+                        <th>كود الماده</th>
+                        <th>اسم الماده</th>
+                        <th>الساعات المعتمده</th>
+                        <th>اختر تقديرك</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <table class="table table" id="level-2-1" data-state="false" hidden>
+                <thead>
+                    <tr>
+                        <th>كود الماده</th>
+                        <th>اسم الماده</th>
+                        <th>الساعات المعتمده</th>
+                        <th>اختر تقديرك</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <table class="table table" id="level-2-2" data-state="false" hidden>
+                <thead>
+                    <tr>
+                        <th>كود الماده</th>
+                        <th>اسم الماده</th>
+                        <th>الساعات المعتمده</th>
+                        <th>اختر تقديرك</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <table class="table table" id="level-3-1" data-state="false" hidden>
+                <thead>
+                    <tr>
+                        <th>كود الماده</th>
+                        <th>اسم الماده</th>
+                        <th>الساعات المعتمده</th>
+                        <th>اختر تقديرك</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <table class="table table" id="level-3-2" data-state="false" hidden>
+                <thead>
+                    <tr>
+                        <th>كود الماده</th>
+                        <th>اسم الماده</th>
+                        <th>الساعات المعتمده</th>
+                        <th>اختر تقديرك</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <table class="table table" id="level-4-1" data-state="false" hidden>
+                <thead>
+                    <tr>
+                        <th>كود الماده</th>
+                        <th>اسم الماده</th>
+                        <th>الساعات المعتمده</th>
+                        <th>اختر تقديرك</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <table class="table table" id="level-4-2" data-state="false" hidden>
+                <thead>
+                    <tr>
+                        <th>كود الماده</th>
+                        <th>اسم الماده</th>
+                        <th>الساعات المعتمده</th>
+                        <th>اختر تقديرك</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <hr />
+            <div>
+                <h4 style="float:right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span id="totalGpa">0.0</span> : التراكمي</h4>
+                <h4 style="float:right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span id="av">0.0</span> : الفصلي</h4>
+            </div>
+            <div style="clear:both"></div>
+            <div>
+                <div class="col-4" style="padding-bottom:100px">
+                    <button class="btn btn-success w-100" style="float:left" id="sub" disabled>حساب المعدل</button>
+                </div>                
+            </div>
+        </section>
+    </div>
+</div>
+
+<input type="hidden" id="level1" value="@LevelsNames.Level_1"/>
+<input type="hidden" id="level2" value="@LevelsNames.Level_2"/>
+<input type="hidden" id="level3" value="@LevelsNames.Level_3"/>
+<input type="hidden" id="level4" value="@LevelsNames.Level_4"/>
+<input type="hidden" id="term1" value="@LevelsNames.term_1"/>
+<input type="hidden" id="term2" value="@LevelsNames.term_2"/>
+
+<input type="hidden" id="levelId" value="level-1"/>
+<input type="hidden" id="dep" value=""/>
+<input type="hidden" id="levVal" value="@LevelsNames.Level_1"/>
+
+<input type="hidden" id="GPA" value="0.0">
+
+@section Scripts{
+    <script>
+        var sendResult = [];
+        var count = 1;
+        $(document).ready(function() {
+            $.ajax({
+                url: '/api/Application/GetDepartments',
+                type:'get',
+                success: function(result) {
+                    $.each(result, function(i, dep) {
+                        $("#dropDepartments").append(`<option style="font-size: 20px;" value="${dep}">${dep}</option>`);
+                    });
+                },
+                error: function() { 
+                    alert("error");
+                }
+            });
+
+
+        });
+
+        $("#dropDepartments").change(function() {
+            $(this).prop('disabled', true);
+           
+            var department = $(this).val();
+            $("#dep").prop('value', department);
+            
+            var level = $("#level1").val() + " " + $("#term1").val();
+
+
+            getmaterial(department, level, "level-1-1");
+        });
+
+        $("a").click(function (event) {
+
+            if (this.hash !== "" && !$("#dropDepartments").val() == "") {
+                $("#rebody").prop('hidden', false);
+                
+                event.preventDefault();
+
+                var hash = this.hash;
+
+                $('html, body').animate({
+                    scrollTop:
+                        $(hash).offset().top
+                }, 800, function () {
+                    window.location.hash = hash;
+                });
+            }
+        });
+
+        $(".levbtn").click(function() {
+
+            var levId = $(this).data("id");
+            
+            var levIdter = $(this).data("id") + "-1";
+           
+            var depar = $("#dep").val();
+
+            var levVal = $(this).data("level") + " " + $("#term1").val();
+
+            $("#levVal").prop('value', $(this).data("level"));
+           
+            $("#levelId").prop('value', levId);
+            
+            var idtab = "#" + levIdter;
+
+            if ($(idtab).data("state") == false) {
+                getmaterial(depar, levVal, levIdter);
+            }
+            else{
+                $("table").fadeOut(0);
+                $(idtab).fadeIn(1000);           
+            }    
+            
+            $(".levbtn").removeClass("active");
+            $(this).addClass("active");
+            
+            $("#t2").removeClass("active");
+            $("#t1").addClass("active");
+        });
+
+        $(".termbtn").click(function() {
+
+            var term = $(this).data("term");
+
+            if (term == "#term1"){
+                var levIdter = $("#levelId").val() + "-1";
+            }
+            else {
+                var levIdter = $("#levelId").val() + "-2";
+            }
+           
+            var depar = $("#dep").val();
+
+            var levVal = $("#levVal").val() + " " + $(term).val();
+           
+            var idtab = "#" + levIdter;
+            
+            if ($(idtab).data("state") == false) {
+                getmaterial(depar, levVal, levIdter);
+            }
+            else{
+                $("table").fadeOut(0);
+                $(idtab).fadeIn(1000);       
+            }
+
+            $(".termbtn").removeClass("active");
+            $(this).addClass("active");
+        });
+
+        $("#sub").click(function() {
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                url: '/api/Application/' + $("#GPA").val() + "/" + count,
+                dataType: 'json',
+                type: 'post',
+                data: JSON.stringify(sendResult),
+                success: function(result){
+                    $("#av").empty().html(result.semesterAverage);
+                    $("#totalGpa").empty().html(result.totalGPA);
+                    $("#GPA").prop('value', result.totalGPA);
+
+                    while (sendResult.length > 0) {
+                        sendResult.pop();
+                    }
+                    
+                    $("#sub").prop('disabled', true);
+                    count++;
+                },
+                error: function() {
+                    alert("error");
+                }
+            });
+        });
+
+        function getmaterial(dep, lev, tabid) {
+            var tableBodyId = "#" + tabid + " " + "tbody";
+            var tableId = "#" + tabid;
+
+            $.ajax({
+                url: '/api/Application/' + dep + "/" + lev,
+                type: 'get',
+                dataType: 'json',
+                success: function(Result) { 
+
+                    $("table").fadeOut(0);
+
+                    var appe = ``;
+
+                    $.each(Result, function(i, material) {
+                        appe += `<tr>
+                                <td>${material.id}</td>
+                                <td>${material.title}</td>
+                                <td>${material.hours}</td>
+                                <td>
+                                    <select class="form-control" data-h="${material.hours}" data-state="false" value="" required>
+                                        <option value="">اختر تقديرك</option>
+                                        <option value="4">أ+</option>
+                                        <option value="3.7">أ</option>
+                                        <option value="3.4">ب+</option>
+                                        <option value="3">ب</option>
+                                        <option value="2.7">ج+</option>
+                                        <option value="2.3">ج</option>
+                                        <option value="2">ج-</option>
+                                        <option value="1.7">د+</option>
+                                        <option value="1.3">د</option>
+                                        <option value="1">د-</option>
+                                        <option value="0">ر</option>
+                                    </select>
+                                </td>
+                            </tr>`;
+                    });
+
+                    $(tableBodyId).append(appe).find("select").addClass("ggg");
+                    
+                    $(".ggg").change(function() {
+
+                        if ($(this).data("state") == false) {
+                            let obj = {};
+                            
+                            obj.baseH = $(this).data("h");
+                            obj.selectedH = $(this).val();
+
+                            sendResult.push(obj);
+                            $(this).data("state", true);
+                            $(this).prop('disabled', true);
+
+                            $("#sub").prop('disabled', false);
+                        }
+                    });
+
+                    $(tableId).fadeIn(1000);     
+                    $(tableId).data("state", true);
+                },
+                error: function() { 
+                    alert("error");
+                }
+            });
+        };
+
+    </script>
+}
+
+
+
+
+
+
+

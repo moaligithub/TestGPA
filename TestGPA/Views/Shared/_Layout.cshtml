@@ -8,7 +8,7 @@
          <meta name="keywords" content="">
          <meta name="team" content="">
          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-
+        
          <link rel="stylesheet" href="~/css/bootstrap.min.css">
          <link rel="stylesheet" href="~/css/vegas.min.css">
          <link rel="stylesheet" href="~/css/font-awesome.min.css">
@@ -47,9 +47,19 @@
             </main>
         </div>
 
+        <footer class="border-top footer text-muted">
+            <div class="container" style="padding:20px">
+                <div class="text-center">
+                    &copy; Developed by - <a href="https://www.linkedin.com/in/mohamed-ali-6955a6209" class="text-danger">Mohamed Ali</a>
+                </div>
+            </div>
+        </footer>
+
         <!-- SCRIPTS -->
         <script src="~/js/jquery.js"></script>
         <script src="~/js/vegas.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/lib/bootbox.js/bootbox.min.js"></script>
         <script src="~/js/custom.js"></script>
         @await RenderSectionAsync("Scripts", required: false)
     </body>

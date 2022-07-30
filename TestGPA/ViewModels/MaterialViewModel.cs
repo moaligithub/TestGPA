@@ -1,9 +1,11 @@
-﻿namespace TestGPA.ViewModels
+﻿using System;
+
+namespace TestGPA.ViewModels
 {
     public class MaterialViewModel
     {
-        public string Id { get; set; }
-        public string Title { get; set; }
-        public byte Hours { get; set; }
+        public string title { get; set; }
+        public string id { get; set; }
+        public double hours { get; set; }
     }
 }

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using TestGba.IServices;
-using TestGPA.Helper;
 using TestGPA.ViewModels;
 
 namespace TestGPA.Controllers.Api
@@ -41,10 +40,10 @@ namespace TestGPA.Controllers.Api
             return Ok(result);
         }
 
-        [HttpPost("{GPA}/{count}")]
-        public IActionResult Calcluate([FromBody]IEnumerable<PostData> data, string GPA, int count)
+        [HttpPost("{GPA}")]
+        public IActionResult Calcluate([FromBody] IEnumerable<MaterialSelectViewModel> data, string GPA)
         {
-            return Ok(_applicationServices.CalculateGPA(data.ToList(), GPA, count));
+            return Ok(_applicationServices.CalculateGPA(data.ToList(), GPA));
         }
     }
 }

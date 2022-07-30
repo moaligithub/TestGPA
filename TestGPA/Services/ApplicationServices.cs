@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TestGba.IServices;
-using TestGPA.Helper;
 using TestGPA.ViewModels;
 
 namespace TestGba.Services
@@ -18,29 +17,42 @@ namespace TestGba.Services
             workBook = ExcelFile.Load(hosting.WebRootPath + @"/testGPA.xlsx");
         }
 
-        public GPA CalculateGPA(List<PostData> data, string oldGpa, int count)
+        public GPA CalculateGPA(List<MaterialSelectViewModel> data, string oldGpa)
         {
-            float totalSum = 0.0f;
-            float HGPA = 0.0f;
-            float HAV = 0.0f;
+            float totalSum = 0.0f, HGPA = 0.0f, HAV = 0.0f;
+
+            data = data.OrderBy(d => d.degree).ToList();
 
             foreach (var item in data)
             {
-                totalSum += item.baseH * item.selectedH;
+                totalSum += item.hours * item.degree;
                 
-                if (item.selectedH > 0)
-                    HGPA += item.baseH;
+                if (item.degree > 0)
+                    HGPA += item.hours;
 
-                HAV += item.baseH;
+                HAV += item.hours;
             }
 
-            var gpa = (((Math.Round((double)(totalSum / HGPA), 2) + Convert.ToDouble(oldGpa))) / count);
+            double OldGPA = Convert.ToDouble(oldGpa);
+            double newGpa = 0.0;
 
-            return new GPA
+            if (OldGPA * 1 == 0)
+                newGpa = ((Math.Round((double)(totalSum / HGPA), 2)));
+
+            else
+                newGpa = (((Math.Round((double)(totalSum / HGPA), 2) + OldGPA)) / 2);
+
+            GPA result = new GPA
             {
                 SemesterAverage = new string(Math.Round((totalSum / HAV), 2).ToString().ToArray()),
-                TotalGPA = new string(Math.Round(gpa, 2).ToString().ToArray())
+                TotalGPA = new string(Math.Round(newGpa, 2).ToString().ToArray())
             };
+
+            if (newGpa < 2.3)
+                result.Bad = GetBadMaterials(data, OldGPA, totalSum, HAV);
+
+
+            return result;
         }
 
         public List<MaterialViewModel> GetAllMaterialInLevel(string levelName, string departmenName)
@@ -52,9 +64,9 @@ namespace TestGba.Services
 
             return result.Select(r => new MaterialViewModel
             {
-                Id = r.Cells[0].StringValue,
-                Title = r.Cells[1].StringValue,
-                Hours = Convert.ToByte(r.Cells[2].StringValue)
+                id = r.Cells[0].StringValue,
+                title = r.Cells[1].StringValue,
+                hours = Convert.ToDouble(r.Cells[2].StringValue)
             }).ToList();
         }
 
@@ -73,6 +85,49 @@ namespace TestGba.Services
             }
 
             return names;
+        }
+
+        private List<MaterialViewModel> GetBadMaterials(List<MaterialSelectViewModel> data, double OldGpa,float totalSum, double h)
+        {
+            data = data.OrderBy(d => d.degree).ToList();
+            ExcelWorksheet sheet = workBook.Worksheets[0];
+            double newGpa = 0.0;
+            
+            if (OldGpa * 1 == 0)
+                newGpa = ((Math.Round((double)(totalSum / h), 2)));
+
+            else
+                newGpa = (((Math.Round((double)(totalSum / h), 2) + OldGpa)) / 2);
+
+            var result = new List<MaterialViewModel>();
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                if (newGpa < 2.3)
+                {
+                    var item = sheet.Rows.Where(r => r.Cells[0].StringValue == data[i].id).SingleOrDefault();
+                    result.Add(new MaterialViewModel
+                    {
+                        id = item.Cells[0].StringValue,
+                        title = item.Cells[1].StringValue,
+                        hours = Convert.ToDouble(item.Cells[2].StringValue)
+                    });
+                }
+
+                else
+                    break;
+
+                if (data[i].hours == 0)
+                    h += data[i].hours;
+                
+                double x = (data[i].degree * data[i].hours) / h;
+                newGpa -= x;
+
+                double y = (3 * data[i].hours) / h;
+                newGpa += y;
+            }
+            // 2.54
+            return result;
         }
     }
 }

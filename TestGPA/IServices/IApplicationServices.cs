@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using TestGPA.Helper;
 using TestGPA.ViewModels;
 
 namespace TestGba.IServices
@@ -27,6 +26,6 @@ namespace TestGba.IServices
         /// <param name="oldGpa">Expresses old gpa.</param>
         /// <param name="count">Expresses count.</param>
         /// <returns>GPA.</returns>
-        public GPA CalculateGPA(List<PostData> data, string oldGpa, int count);
+        public GPA CalculateGPA(List<MaterialSelectViewModel> data, string oldGpa);
     }
 }
